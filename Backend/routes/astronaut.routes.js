@@ -1,5 +1,5 @@
 const express = require('express')
-const astronautController = require('../controllers/astronautController.js')
+const astronautController = require('../controllers/astronaut.controller.js')
 
 const router = express.Router()
 
