@@ -29,4 +29,4 @@ db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='astronauts'"
     }
 })
 
-module.exports = { db }
+module.exports = db
