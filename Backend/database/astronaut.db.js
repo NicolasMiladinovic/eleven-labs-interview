@@ -10,23 +10,21 @@ const db = new sqlite3.Database(dbFile, err => {
 // Check if table astronauts already exists
 db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='astronauts'", (err, row) => {
     if (err) throw err
-    
-    if (!row) {
+
+    // Synchrone 
+    db.serialize(() => {
         // Create table astronauts
-        db.run(`CREATE TABLE astronauts (
-            id INTEGER PRIMARY KEY,
-            name TEXT
-        )`)
+        if (!row) {
+            db.run(`CREATE TABLE astronauts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT
+            )`)
 
-        // Insert default values
-        db.run(`INSERT INTO astronauts (name) VALUES ('Neil Armstrong')`)
-        db.run(`INSERT INTO astronauts (name) VALUES ('Buzz Aldrin')`)
-        db.run(`INSERT INTO astronauts (name) VALUES ('Alan Shepard')`)
-
+            // Insert default values
+            db.run(`INSERT INTO astronauts (name) VALUES ('Neil Armstrong'), ('Buzz Aldrin'), ('Alan Shepard')`)
+        }
         console.log('Table astronauts created.')
-    } else {
-        console.log('Table astronauts already exists.')
-    }
+    })
 })
 
 module.exports = db
