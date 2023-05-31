@@ -22,8 +22,8 @@ db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='astronauts'"
 
             // Insert default values
             db.run(`INSERT INTO astronauts (name) VALUES ('Neil Armstrong'), ('Buzz Aldrin'), ('Alan Shepard')`)
+            console.log('Table astronauts created.')
         }
-        console.log('Table astronauts created.')
     })
 })
 
