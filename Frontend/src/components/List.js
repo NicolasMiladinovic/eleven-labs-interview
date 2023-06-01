@@ -84,7 +84,7 @@ class List extends Component {
                                 (
                                     <div>
                                         <label>
-                                            Name:
+                                            New name:
                                             <input type="text"
                                                 ref={this.inputEditRef}
                                                 defaultValue={astronaut.name}
