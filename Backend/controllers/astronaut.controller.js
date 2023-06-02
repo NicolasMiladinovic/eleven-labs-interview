@@ -2,8 +2,11 @@ const db = require('../database/astronaut.db.js')
 
 getAstronauts = async (req, res) => {
     try {
-        const result = await db.all(`SELECT * FROM astronauts`)
-        res.status(200).json(result)
+        // all() return a promise Database {}
+        await db.all(`SELECT * FROM astronauts`, function (err, rows) {
+            if(err) throw err
+            res.status(200).json(rows)
+        })
     } catch (error) {
         res.status(500).json(error)
     }
