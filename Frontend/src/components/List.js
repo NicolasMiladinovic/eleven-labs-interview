@@ -20,7 +20,7 @@ class List extends Component {
 
     async getAstronauts() {
         try {
-            const response = await api.get('/getAstronauts')
+            const response = await api.get('/astronauts')
             this.setState({ astronauts: response.data })
 
             return response.data
@@ -31,7 +31,7 @@ class List extends Component {
 
     async addAstronaut(value) {
         try {
-            await api.post('/addAstronaut', {
+            await api.post('/astronaut', {
                 name: value,
             })
 
@@ -46,7 +46,7 @@ class List extends Component {
 
     async deleteAstronaut(id) {
         try {
-            await api.delete(`/deleteAstronaut/${id}`)
+            await api.delete(`/astronaut/${id}`)
             this.setState({
                 astronauts: this.state.astronauts.filter((astronaut) => astronaut.id !== id)
             })
@@ -57,7 +57,7 @@ class List extends Component {
 
     async editAstronaut(id, newName) {
         try {
-            await api.put(`/updateAstronaut/${id}`, {
+            await api.patch(`/astronaut/${id}`, {
                 newName: newName
             })
             this.setState({
