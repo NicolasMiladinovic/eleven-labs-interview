@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Button from './Button'
+import Button from '../Button'
+import './List.style.css'
+import star from '../../ressources/star.png'
+
+// Icons
+import EditIcon from '@mui/icons-material/Edit'
+import DeleteIcon from '@mui/icons-material/Delete'
+import PublishIcon from '@mui/icons-material/Publish'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
 const api = axios.create({
     baseURL: 'http://localhost:1234',
@@ -39,6 +47,8 @@ class List extends Component {
                 // using Date.now() because we need an uniq id
                 astronauts: [...this.state.astronauts, { id: Date.now(), name: value }]
             })
+
+            document.getElementById("inputAdd").reset()
         } catch (error) {
             console.error(error)
         }
@@ -71,21 +81,51 @@ class List extends Component {
         }
     }
 
+    stars() {
+        const stars = [];
+        for (let i = 0; i < 4; i++) {
+               stars.push(<img src={star} alt='star' id={`star${[i]}`} className='star' />)
+        }
+        return stars
+    }
+
     render() {
         const { astronauts, editable } = this.state
         return (
-            <div>
-                <h1>List of Astronauts</h1>
+            <div className='list'>
+
+                <div>
+                    {this.stars()}
+                </div>
+
+                <h1>Astronauts</h1>
+
+                <form id='inputAdd'>
+                    <label>
+                        Add an astronaut:
+                        <input
+                            type="text"
+                            ref={this.inputSubmitRef}
+                        />
+                    </label>
+                    <Button
+                        type="submit"
+                        onClick={() => this.addAstronaut(this.inputSubmitRef.current.value)}
+                        icon={<PublishIcon />}
+                    />
+                </form>
+
                 <ul>
                     {astronauts.map((astronaut) => (
-                        <div key={astronaut.id}>
+                        <div key={astronaut.id} className='content'>
                             {editable === astronaut.id
                                 ?
                                 (
                                     <div>
                                         <label>
-                                            New name:
-                                            <input type="text"
+                                            Enter a new name:
+                                            <input
+                                                type="text"
                                                 ref={this.inputEditRef}
                                                 defaultValue={astronaut.name}
                                             />
@@ -95,40 +135,29 @@ class List extends Component {
                                                 this.editAstronaut(astronaut.id, this.inputEditRef.current.value)
                                                 this.setState({ editable: null })
                                             }}
-                                            label="OK"
+                                            icon={<CheckCircleIcon />}
                                         />
                                     </div>
                                 )
                                 :
                                 (
                                     <div>
-                                        <div>{astronaut.name}</div>
+                                        <div className='name'>{astronaut.name}</div>
                                         <Button
-                                            label="Edit"
                                             onClick={() => this.setState({ editable: astronaut.id })}
+                                            icon={<EditIcon />}
                                         />
                                     </div>
                                 )}
 
-
                             <Button
                                 onClick={() => this.deleteAstronaut(astronaut.id)}
-                                label="Delete"
+                                icon={<DeleteIcon />}
                             />
                         </div>
                     ))}
                 </ul>
-                <div>
-                    <label>
-                        Name:
-                        <input type="text" ref={this.inputSubmitRef} />
-                    </label>
-                    <Button
-                        type="submit"
-                        onClick={() => this.addAstronaut(this.inputSubmitRef.current.value)}
-                        label="Submit"
-                    />
-                </div>
+
             </div>
         )
     }
