@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  backend:
+    build: ./Backend
+    container_name: backend_c
+    ports:
+      - '1234:1234'
+    volumes:
+      - ./Backend:/app
+      - ./app/node_modules
+  frontend:
+    build: ./Frontend
+    container_name: frontend_c
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./Frontend:/app
+      - ./app/node_modules
