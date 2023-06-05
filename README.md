@@ -5,7 +5,7 @@ This repository contains a CRUD (Create, Read, Update, Delete) application as pa
 ## 🤖 Installation
 To install this application, follow these steps:
 
-1. Clone this repository to your local machine using https://github.com/NicolasMiladinovic/eleven-labs-interview/
+1. Clone this repository to your local machine using https://github.com/NicolasMiladinovic/eleven-labs-interview.git
 2. Navigate to the root directory of the cloned repository.
 
 ### 🐳 With Docker
@@ -22,7 +22,7 @@ Run `npm start` to start the backend server.
 Navigate to the *./Frontend* directory and run `npm install`.
 Run `npm start` to start the frontend server.
 
-**Then go to *http://localhost:3000/***
+**In each case, go to *http://localhost:3000/***
 
 ## 🎯 Objectives
 This application allows you to perform CRUD operations on a database of items. You can create a new astronaut, read existing astronauts, update existing astronaut, and delete existing astronaut.
@@ -31,7 +31,7 @@ This application allows you to perform CRUD operations on a database of items. Y
 This application was built using the following technologies:
 
 **☀️ Frontend :**
-* React
+* React.js
 * Axios
 * Material UI
 
