@@ -39,3 +39,7 @@ This application was built using the following technologies:
 * Node.js
 * Express.js
 * SQLite3
+
+## 🟠 Postman
+Collection API Rest Endpoint
+https://www.postman.com/nicolasmiladinovic/workspace/nicolas-workspace/collection/20584061-bf664966-f0fa-4871-b3cf-9c34082cc6d9?action=share&creator=20584061
