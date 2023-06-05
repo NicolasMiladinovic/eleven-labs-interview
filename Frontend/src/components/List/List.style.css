@@ -40,7 +40,16 @@ input {
 .star {
     width: 50px;
     position: absolute;
-    animation: rotate 1s infinite;
+}
+
+#star1,
+#star3 {
+    animation: rotate-odd 1s infinite;
+}
+
+#star0,
+#star2 {
+    animation: rotate-even 1s infinite;
 }
 
 #star0 {
@@ -63,13 +72,27 @@ input {
     right: 80px;
 }
 
-@keyframes rotate {
+@keyframes rotate-odd {
     0% {
         transform: rotateZ(0deg);
     }
 
     50% {
         transform: rotateZ(10deg);
+    }
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+@keyframes rotate-even {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    50% {
+        transform: rotateZ(-10deg);
     }
 
     100% {

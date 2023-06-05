@@ -84,7 +84,7 @@ class List extends Component {
     stars() {
         const stars = [];
         for (let i = 0; i < 4; i++) {
-               stars.push(<img src={star} alt='star' id={`star${[i]}`} className='star' />)
+            stars.push(<img src={star} alt='star' id={`star${[i]}`} className='star' />)
         }
         return stars
     }
